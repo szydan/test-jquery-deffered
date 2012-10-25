@@ -1,4 +1,16 @@
-test-jquery-deffered
-====================
+#test-jquery-deffered
 
-test repo just to play with jQuery deferred 
+
+###Info
+
+It is an example how to use jQuery deferred.when to do multiple ajax calls 
+and combine the results of them after all calls finish. It does not fail when single call fail due to 404 or 500 
+
+
+###To start 
+
+npm install validator express
+
+node app.js 8080
+
+open http://localhost:8080 
