@@ -28,8 +28,6 @@ server.get('/:code/:data', function (req, res) {
    // here pass the port
     res.writeHead(req.params.code, {"Content-Type": "text/html"});
 	
-	console.log(req.query["callback"]);
-
     if(req.query["callback"]){
 		res.end( req.query["callback"] +'('+req.params.data+');');	
     }else{

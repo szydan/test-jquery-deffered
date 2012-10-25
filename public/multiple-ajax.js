@@ -5,7 +5,8 @@ $(document).ready(function(){
 			url:"http://localhost:8080/200/%7B%22param1%22%3A%22value1%22%7D",
 			type:"get",
 			dataType:"jsonp"
-		}),
+		})
+		,
 		$.ajax({
 			url:"http://localhost:8080/200/%7B%22param2%22%3A%22value2%22%7D",
 			type:"get",
@@ -81,16 +82,28 @@ $(document).ready(function(){
 	jQuery.when2.apply(this, args)
 		 .then(function(){
 			var combinedResults = {};
-			for (var i = 0; i < arguments.length; i++) {
-				var singleResult = arguments[i]; 
-				console.log(singleResult);
+				
+			if( arguments.length === 3 && Object.prototype.toString.call( arguments[0] ) != '[object Array]'){
+				// when single deferred object was passed to when 
+				var singleResult = [arguments[0],arguments[1],arguments[2]]; 
+				
 				if(singleResult[1]==="success"){
 					for(var serviceName in singleResult[0]){
 						combinedResults[serviceName] = singleResult[0][serviceName];
 					}
 				}
+			} else{
+				// when multiple deferred object was passed to when 
+				for (var i = 0; i < arguments.length; i++) {
+					var singleResult = arguments[i]; 
+					console.log(singleResult);
+					if(singleResult[1]==="success"){
+						for(var serviceName in singleResult[0]){
+							combinedResults[serviceName] = singleResult[0][serviceName];
+						}
+					}
+				}
 			}
-			console.log("then");
 			console.log(combinedResults);
 		});
 });

@@ -14,3 +14,5 @@ npm install validator express
 node app.js 8080
 
 open http://localhost:8080 
+
+open inspector and check how many requests were done and that results of successful one were combined - console.log statements
